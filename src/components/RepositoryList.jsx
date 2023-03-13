@@ -6,13 +6,6 @@ import '../styles/repositories.css';
 
 const repositoryName = 'unformHahaha';
 
-
-const repository = {
-    name: 'kkk',
-    description: 'Forms in React',
-    link: 'https://github.com/unform/unform'
-}
-
 //'https://github.com/orgs/rock'
 
 export function RepositoryList() {
@@ -22,7 +15,7 @@ export function RepositoryList() {
         fetch('https://api.github.com/orgs/rocketseat/repos')
         .then(response => response.json())
         .then(data => setRepositories(data))
-    },[repositories]);
+    },[]);
     //Não deixe sem o segundo parametro
 
     console.log(repositories)
@@ -33,18 +26,9 @@ export function RepositoryList() {
             <h1>Lista de repositórios</h1>
 
             <ul>
-                <RepositoryItem 
-                    repository = {repository} 
-                    />
-                <RepositoryItem 
-                    repository = {repository} 
-                    />
-                <RepositoryItem 
-                    repository = {repository} 
-                    />
-                <RepositoryItem 
-                    repository = {repository} 
-                    />
+                {repositories.map(repository => {
+                    return <RepositoryItem key={repository.name} repository={repository} />
+                })}
             </ul>
         </section>
     )
